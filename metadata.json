@@ -1,0 +1,6 @@
+{
+  "name": "Green Shield: Active Packaging - CCT, CGC",
+  "description": "Green Shield: Nature-Inspired Active Packaging. A biodegradable biopolymer film incorporated with natural antimicrobial plant extracts developed at the Biotech Block, CCT, CGC for Parivartan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
