@@ -43,7 +43,7 @@ const PROJECT_CONTENT = {
     secondaryCtaText: 'Review Problem Statement',
     secondaryCtaHref: '#problem',
     imageSlot: {
-      src: '/assets/greenshield-final-film.png',
+      src: '/assets/greenshield-final-film-v2.png',
       caption: 'Figure 1.0: Authentic Green Shield Active Packaging Film Prototype',
       details: 'Translucent biodegradable biopolymer film incorporated with antimicrobial neem extract and agricultural pectin.',
       alt: 'Authentic Green Shield active packaging film prototype held by researcher'
@@ -158,7 +158,7 @@ const PROJECT_CONTENT = {
       }
     ],
     visualSlot: {
-      src: '/assets/greenshield-raw-materials.png',
+      src: '/assets/greenshield-raw-materials-v2.png',
       figureLabel: 'Figure 2.0',
       caption: 'Sustainable Raw Materials: Cornstarch, Glycerol, Pectin, Acetic Acid, Neem Extract, Distilled Water',
       alt: 'Sustainable raw materials for Green Shield active packaging film'
@@ -187,8 +187,8 @@ const PROJECT_CONTENT = {
       }
     ],
     diagramSlot: {
-      src: '/assets/greenshield-steps-casting.png',
-      fullPosterSrc: '/assets/greenshield-poster-full.png',
+      src: '/assets/greenshield-steps-casting-v2.png',
+      fullPosterSrc: '/assets/greenshield-infographic-v2.png',
       figureLabel: 'Figure 3.0',
       caption: 'Standard Operating Procedure (SOP): Film Casting, Drying & Final Active Packaging Formation',
       alt: 'Step-by-step laboratory procedure for casting and drying Green Shield active film'
@@ -337,6 +337,31 @@ function setupScrollSpy() {
   sections.forEach(section => observer.observe(section));
 }
 
+/**
+ * Setup IntersectionObserver for heading pop-up entrance animation.
+ */
+function setupHeadingPopObserver() {
+  const headings = document.querySelectorAll('.section-title, .hero-title, .section-eyebrow, .card-title-custom, .editorial-card, .methodology-step, .team-card');
+  if (!('IntersectionObserver' in window) || headings.length === 0) return;
+
+  const observerOptions = {
+    root: null,
+    threshold: 0.1,
+    rootMargin: '0px 0px -20px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('topic-pop-reveal');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  headings.forEach(heading => observer.observe(heading));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('hashchange', handleRouting);
   
@@ -349,4 +374,5 @@ document.addEventListener('DOMContentLoaded', () => {
   
   handleRouting();
   setupScrollSpy();
+  setupHeadingPopObserver();
 });

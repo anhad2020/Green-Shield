@@ -848,6 +848,70 @@ input:focus-visible {
   margin-bottom: 0;
 }
 
+/* Pop-up Effect on Topic Headings & Interactive Elements */
+.heading-pop-effect {
+  display: inline-block;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease, text-shadow 0.2s ease;
+  cursor: default;
+}
+
+.heading-pop-effect:hover {
+  transform: translateY(-3px) scale(1.02);
+  color: var(--accent-hover);
+  text-shadow: 0 4px 14px rgba(23, 121, 107, 0.15);
+}
+
+.eyebrow-pop-effect {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+}
+
+.eyebrow-pop-effect:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.card-pop-effect {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.2s ease;
+}
+
+.card-pop-effect:hover {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: 0 10px 22px rgba(32, 43, 41, 0.08);
+  border-color: var(--accent-primary);
+}
+
+/* Subtle Pop-in animation for headings when revealed */
+.topic-pop-reveal {
+  animation: topicPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes topicPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  70% {
+    transform: translateY(-2px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Fullscreen Lightbox Modal for Infographic */
+.modal-infographic-dialog {
+  max-width: 900px;
+}
+
+.modal-infographic-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  display: block;
+  margin: 0 auto;
+}
+
 /* Responsive adjustments */
 @media (max-width: 991.98px) {
   .navbar-collapse {
