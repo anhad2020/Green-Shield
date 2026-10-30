@@ -973,6 +973,627 @@ input:focus-visible {
   margin: 0 auto;
 }
 
+/* Feature Indicators (Hero Badges) */
+.hero-features-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.feature-indicator-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #0E5C4E;
+  background-color: #EBF7F2;
+  border: 1px solid #C4E7DA;
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.65rem;
+  transition: all 0.2s ease;
+}
+
+.feature-indicator-badge:hover {
+  background-color: #DDF1E8;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(23, 121, 107, 0.12);
+}
+
+.feature-indicator-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-primary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Navbar Partner With Us Button */
+.btn-nav-cta {
+  background-color: var(--accent-primary);
+  color: #FFFFFF !important;
+  font-weight: 600;
+  font-size: 0.84rem;
+  padding: 0.45rem 1rem !important;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent-primary);
+  transition: all 0.2s ease;
+  margin-left: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-nav-cta:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(23, 121, 107, 0.2);
+}
+
+/* Scientific Table Component */
+.table-responsive-scientific {
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: #FFFFFF;
+  box-shadow: var(--shadow-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.table-scientific {
+  width: 100%;
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+}
+
+.table-scientific thead th {
+  background-color: #0F473D;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  vertical-align: middle;
+}
+
+.table-scientific thead th:last-child {
+  border-right: none;
+}
+
+.table-scientific tbody td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  vertical-align: top;
+  color: var(--text-primary);
+}
+
+.table-scientific tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-scientific tbody td:last-child {
+  border-right: none;
+}
+
+.table-scientific tbody tr:nth-of-type(even) {
+  background-color: #FAFDFB;
+}
+
+.table-scientific tbody tr:hover {
+  background-color: #F1F8F5;
+}
+
+.table-scientific td.table-col-highlight,
+.table-scientific th.table-col-highlight {
+  background-color: #EDF7F3 !important;
+  border-left: 2px solid var(--accent-primary);
+  border-right: 2px solid var(--accent-primary);
+}
+
+.table-scientific th.table-col-highlight {
+  background-color: #0A3C33 !important;
+}
+
+.status-badge-est {
+  display: inline-block;
+  font-family: var(--font-family-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #155724;
+  background-color: #D4EDDA;
+  border: 1px solid #C3E6CB;
+  border-radius: var(--radius-xs);
+  padding: 0.15rem 0.45rem;
+}
+
+.status-badge-prop {
+  display: inline-block;
+  font-family: var(--font-family-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #0E5C4E;
+  background-color: #E2F3ED;
+  border: 1px solid #B8E4D5;
+  border-radius: var(--radius-xs);
+  padding: 0.15rem 0.45rem;
+}
+
+/* Three Pillars of Green Shield */
+.pillar-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-top: 4px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(23, 121, 107, 0.1);
+  border-color: var(--accent-primary);
+}
+
+.pillar-number {
+  font-family: var(--font-family-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  background-color: var(--bg-accent);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  display: inline-block;
+  margin-bottom: 0.85rem;
+  width: fit-content;
+}
+
+.pillar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.65rem;
+}
+
+.pillar-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* 4-Stage Process Workflow */
+.process-stage-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.75rem;
+  margin-bottom: 2rem;
+  position: relative;
+  box-shadow: var(--shadow-subtle);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.process-stage-card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 8px 20px rgba(23, 121, 107, 0.08);
+}
+
+.process-stage-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.process-stage-num {
+  width: 52px;
+  height: 52px;
+  background-color: #0E5C4E;
+  color: #FFFFFF;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-mono);
+  font-size: 1.35rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(14, 92, 78, 0.25);
+}
+
+.process-stage-title-wrap {
+  flex-grow: 1;
+}
+
+.process-stage-kicker {
+  font-family: var(--font-family-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-primary);
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.process-stage-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0;
+}
+
+.process-steps-list {
+  padding-left: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.process-steps-list li {
+  margin-bottom: 0.55rem;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.process-steps-list li strong {
+  color: #0E5C4E;
+}
+
+.process-feedstocks-bar {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Scientific Process Flow Diagram (Pipeline) */
+.pipeline-flow-wrapper {
+  background: linear-gradient(135deg, #073B31 0%, #0E5C4E 100%);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.5rem;
+  color: #FFFFFF;
+  margin: 2.5rem 0 3rem;
+  box-shadow: 0 8px 24px rgba(7, 59, 49, 0.2);
+}
+
+.pipeline-flow-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #E2F3ED;
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.pipeline-steps-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.pipeline-step-node {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.95rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.pipeline-step-node:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+}
+
+.pipeline-step-node.final-node {
+  background: #27AE60;
+  border-color: #2ECC71;
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+}
+
+.pipeline-arrow {
+  color: #A2E2CB;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Quality Testing Parameters Cards */
+.testing-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.testing-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(23, 121, 107, 0.09);
+}
+
+.testing-card-tag {
+  font-family: var(--font-family-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  background-color: var(--bg-accent);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-xs);
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  width: fit-content;
+}
+
+.testing-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.45rem;
+}
+
+.testing-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.65rem;
+}
+
+.testing-card-method {
+  margin-top: auto;
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  color: #0E5C4E;
+  background-color: #F0F9F5;
+  padding: 0.3rem 0.55rem;
+  border-left: 2px solid var(--accent-primary);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+}
+
+/* Market Analysis Customer Cards */
+.customer-segment-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.customer-segment-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(23, 121, 107, 0.08);
+}
+
+.customer-segment-badge {
+  font-family: var(--font-family-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0E5C4E;
+  background-color: #EBF7F2;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  width: fit-content;
+}
+
+.customer-segment-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.customer-segment-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+/* Feasibility Parameters Grid */
+.feasibility-box {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+}
+
+.feasibility-param-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.92rem;
+}
+
+.feasibility-param-item:last-child {
+  border-bottom: none;
+}
+
+.feasibility-param-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.feasibility-param-status {
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  color: #856404;
+  background-color: #FFF3CD;
+  border: 1px solid #FFEBAA;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+}
+
+/* UN Sustainable Development Goals (SDG) Cards */
+.sdg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.sdg-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sdg-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(32, 43, 41, 0.08);
+}
+
+.sdg-card-header {
+  padding: 0.85rem 1rem;
+  color: #FFFFFF;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sdg-2-header { background-color: #DDA63A; } /* Zero Hunger */
+.sdg-9-header { background-color: #FD6925; } /* Industry, Innovation */
+.sdg-12-header { background-color: #BF8B2E; } /* Responsible Consumption */
+.sdg-13-header { background-color: #3F7E44; } /* Climate Action */
+.sdg-15-header { background-color: #56C02B; } /* Life on Land */
+
+.sdg-card-body {
+  padding: 1.25rem 1rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  flex-grow: 1;
+}
+
+.sdg-badge-id {
+  font-family: var(--font-family-mono);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.sdg-badge-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Contact and Collaboration Section */
+.contact-section-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.contact-info-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+}
+
+.contact-info-icon {
+  width: 32px;
+  height: 32px;
+  background-color: var(--bg-accent);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.form-control-custom {
+  background-color: #FAFDFB;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control-custom:focus {
+  background-color: #FFFFFF;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(23, 121, 107, 0.15);
+  outline: none;
+}
+
+.form-label-custom {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.contact-status-alert {
+  display: none;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.contact-status-alert.show-success {
+  display: block;
+  background-color: #D4EDDA;
+  border: 1px solid #C3E6CB;
+  color: #155724;
+}
+
 /* Responsive adjustments */
 @media (max-width: 991.98px) {
   .navbar-collapse {

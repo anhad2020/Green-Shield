@@ -28,10 +28,13 @@ const PROJECT_CONTENT = {
   
   navigation: [
     { label: 'Home', href: '#home' },
-    { label: 'Problem', href: '#problem' },
-    { label: 'Project', href: '#project' },
-    { label: 'Solution', href: '#solution' },
-    { label: 'Team', href: '#team' }
+    { label: 'Our Solution', href: '#solution' },
+    { label: 'Process', href: '#process' },
+    { label: 'Comparison', href: '#comparison' },
+    { label: 'Market Analysis', href: '#market' },
+    { label: 'Sustainability', href: '#sustainability' },
+    { label: 'About Us', href: '#about' },
+    { label: 'Contact', href: '#contact' }
   ],
   
   hero: {
@@ -338,10 +341,55 @@ function setupScrollSpy() {
 }
 
 /**
+ * Setup Contact Form Submission & Client-Side Validation
+ */
+function setupContactForm() {
+  const form = document.getElementById('contactForm');
+  const alertBox = document.getElementById('contactStatusAlert');
+  if (!form || !alertBox) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('contactName');
+    const emailInput = document.getElementById('contactEmail');
+    const subjectInput = document.getElementById('contactSubject');
+    const messageInput = document.getElementById('contactMessage');
+
+    let isValid = true;
+
+    [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
+      if (!input) return;
+      if (!input.value.trim() || (input.type === 'email' && !input.checkValidity())) {
+        input.classList.add('is-invalid');
+        isValid = false;
+      } else {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+      }
+    });
+
+    if (!isValid) return;
+
+    // Display confirmation
+    alertBox.classList.add('show-success');
+    alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Reset form
+    form.reset();
+    setTimeout(() => {
+      [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
+        if (input) input.classList.remove('is-valid');
+      });
+    }, 4000);
+  });
+}
+
+/**
  * Setup IntersectionObserver for heading pop-up entrance animation.
  */
 function setupHeadingPopObserver() {
-  const headings = document.querySelectorAll('.section-title, .hero-title, .section-eyebrow, .card-title-custom, .editorial-card, .methodology-step, .team-card');
+  const headings = document.querySelectorAll('.section-title, .hero-title, .section-eyebrow, .card-title-custom, .editorial-card, .methodology-step, .team-card, .process-stage-card, .pillar-card, .testing-card, .customer-segment-card, .sdg-card, .contact-section-card');
   if (!('IntersectionObserver' in window) || headings.length === 0) return;
 
   const observerOptions = {
@@ -365,7 +413,7 @@ function setupHeadingPopObserver() {
 document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('hashchange', handleRouting);
   
-  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .btn-nav-cta');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       closeMobileNav();
@@ -375,4 +423,5 @@ document.addEventListener('DOMContentLoaded', () => {
   handleRouting();
   setupScrollSpy();
   setupHeadingPopObserver();
+  setupContactForm();
 });
