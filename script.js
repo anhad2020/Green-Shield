@@ -341,18 +341,190 @@ function setupScrollSpy() {
 }
 
 /**
- * Setup Contact Form Submission & Client-Side Validation
+ * Escape HTML utility for secure client rendering of proposal entries
+ */
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+/**
+ * Proposals Data Store (localStorage persistence)
+ */
+const PROPOSALS_STORAGE_KEY = 'greenshield_proposals';
+
+function getStoredProposals() {
+  try {
+    const raw = localStorage.getItem(PROPOSALS_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    console.warn('Unable to parse stored proposals from localStorage:', err);
+    return [];
+  }
+}
+
+function saveProposals(proposals) {
+  try {
+    localStorage.setItem(PROPOSALS_STORAGE_KEY, JSON.stringify(proposals));
+  } catch (err) {
+    console.error('Failed to write proposals to localStorage:', err);
+  }
+}
+
+function updateProposalBadges() {
+  const proposals = getStoredProposals();
+  const count = proposals.length;
+  
+  const badge = document.getElementById('proposalsCountBadge');
+  const linkBadge = document.getElementById('proposalsCountLink');
+  
+  if (badge) badge.textContent = count;
+  if (linkBadge) linkBadge.textContent = count;
+}
+
+function renderProposalsList() {
+  const container = document.getElementById('proposalsListContainer');
+  if (!container) return;
+
+  const proposals = getStoredProposals();
+  if (proposals.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-4 text-muted small" id="noProposalsMessage">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-2 text-secondary opacity-50">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="12" y1="18" x2="12" y2="12"></line>
+          <line x1="9" y1="15" x2="15" y2="15"></line>
+        </svg>
+        <div>No collaboration proposals recorded yet in this browser.</div>
+        <div class="mt-1 text-secondary opacity-75">Submit an inquiry through the form to log a test proposal.</div>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = proposals.map((item, idx) => `
+    <div class="proposal-card-item" data-proposal-id="${escapeHtml(item.id)}">
+      <div class="proposal-card-header">
+        <div class="d-flex align-items-center gap-2">
+          <span class="proposal-id-badge">${escapeHtml(item.id)}</span>
+          <span class="proposal-meta-time">${escapeHtml(item.timestamp || item.date || 'Recent')}</span>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 delete-single-proposal-btn" data-index="${idx}" style="font-size: 0.72rem;" title="Delete this entry">
+          Delete
+        </button>
+      </div>
+      <div class="proposal-body-subject">${escapeHtml(item.subject)}</div>
+      <div class="proposal-body-inquirer">
+        <strong>${escapeHtml(item.name)}</strong> &bull; 
+        <span class="text-dark">${escapeHtml(item.org || 'Not specified')}</span> &bull; 
+        <a href="mailto:${encodeURIComponent(item.email)}?subject=Re:%20${encodeURIComponent(item.subject)}" class="text-success text-decoration-none fw-semibold">
+          ${escapeHtml(item.email)}
+        </a>
+      </div>
+      <div class="proposal-body-text">${escapeHtml(item.message)}</div>
+      <div class="proposal-actions">
+        <a href="mailto:${encodeURIComponent(item.email)}?subject=Re:%20${encodeURIComponent(item.subject)}" class="btn btn-sm btn-outline-success py-1 px-2" style="font-size: 0.76rem;">
+          Reply via Email &rarr;
+        </a>
+        <span class="text-muted small" style="font-size: 0.72rem;">Saved to browser storage</span>
+      </div>
+    </div>
+  `).join('');
+
+  // Attach delete handlers for individual items
+  container.querySelectorAll('.delete-single-proposal-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const idx = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+      const currentList = getStoredProposals();
+      if (!isNaN(idx) && idx >= 0 && idx < currentList.length) {
+        currentList.splice(idx, 1);
+        saveProposals(currentList);
+        updateProposalBadges();
+        renderProposalsList();
+      }
+    });
+  });
+}
+
+function exportProposalsCsv() {
+  const proposals = getStoredProposals();
+  if (proposals.length === 0) {
+    alert('No collaboration proposals have been submitted yet to export.');
+    return;
+  }
+
+  const headers = ['ID', 'Timestamp', 'Name', 'Email', 'Organisation', 'Subject', 'Message'];
+  const rows = proposals.map(p => [
+    `"${(p.id || '').replace(/"/g, '""')}"`,
+    `"${(p.timestamp || p.date || '').replace(/"/g, '""')}"`,
+    `"${(p.name || '').replace(/"/g, '""')}"`,
+    `"${(p.email || '').replace(/"/g, '""')}"`,
+    `"${(p.org || '').replace(/"/g, '""')}"`,
+    `"${(p.subject || '').replace(/"/g, '""')}"`,
+    `"${(p.message || '').replace(/"/g, '""')}"`
+  ]);
+
+  const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\r\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const downloadLink = document.createElement('a');
+  downloadLink.setAttribute('href', url);
+  downloadLink.setAttribute('download', `greenshield_collaboration_proposals_${new Date().toISOString().slice(0, 10)}.csv`);
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+  URL.revokeObjectURL(url);
+}
+
+function clearAllProposals() {
+  const proposals = getStoredProposals();
+  if (proposals.length === 0) {
+    return;
+  }
+  if (confirm(`Are you sure you want to clear all ${proposals.length} recorded proposals? This cannot be undone.`)) {
+    localStorage.removeItem(PROPOSALS_STORAGE_KEY);
+    updateProposalBadges();
+    renderProposalsList();
+  }
+}
+
+/**
+ * Setup Contact Form Submission, Storage & Client-Side Validation
  */
 function setupContactForm() {
   const form = document.getElementById('contactForm');
   const alertBox = document.getElementById('contactStatusAlert');
   if (!form || !alertBox) return;
 
+  // Initialize initial proposal count & list
+  updateProposalBadges();
+  renderProposalsList();
+
+  // Attach CSV export & clear handlers
+  const exportBtn = document.getElementById('exportProposalsCsvBtn');
+  if (exportBtn) {
+    exportBtn.addEventListener('click', exportProposalsCsv);
+  }
+
+  const clearBtn = document.getElementById('clearProposalsBtn');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', clearAllProposals);
+  }
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const nameInput = document.getElementById('contactName');
     const emailInput = document.getElementById('contactEmail');
+    const orgInput = document.getElementById('contactOrg');
     const subjectInput = document.getElementById('contactSubject');
     const messageInput = document.getElementById('contactMessage');
 
@@ -371,6 +543,35 @@ function setupContactForm() {
 
     if (!isValid) return;
 
+    // Build proposal object
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    const newProposal = {
+      id: 'GS-' + Math.random().toString(36).substring(2, 8).toUpperCase(),
+      timestamp: formattedDate,
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      org: orgInput && orgInput.value.trim() ? orgInput.value.trim() : 'Academic / External Partner',
+      subject: subjectInput.value.trim(),
+      message: messageInput.value.trim()
+    };
+
+    // Save to localStorage
+    const currentProposals = getStoredProposals();
+    currentProposals.unshift(newProposal);
+    saveProposals(currentProposals);
+
+    // Update UI
+    updateProposalBadges();
+    renderProposalsList();
+
     // Display confirmation
     alertBox.classList.add('show-success');
     alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -378,7 +579,7 @@ function setupContactForm() {
     // Reset form
     form.reset();
     setTimeout(() => {
-      [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
+      [nameInput, emailInput, orgInput, subjectInput, messageInput].forEach(input => {
         if (input) input.classList.remove('is-valid');
       });
     }, 4000);
