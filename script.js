@@ -23,7 +23,7 @@ const PROJECT_CONTENT = {
     department: 'Department of Biotechnology',
     initiative: 'Parivartan',
     projectTitle: 'Green Shield: Nature-Inspired Active Packaging',
-    logoSrc: '/assets/greenshield-logo-official.png'
+    logoSrc: '/public/assets/aistudio/image_1e781d2b.png'
   },
   
   navigation: [
