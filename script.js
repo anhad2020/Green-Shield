@@ -202,7 +202,7 @@ const PROJECT_CONTENT = {
     wordmark: 'GREEN SHIELD',
     institutionLine: 'Parivartan &bull; Biotech Block, Chandigarh College of Technology (CCT), CGC',
     descriptor: 'Green Shield is an academic and environmental sustainability project presented at Parivartan. Developed at the Department of Biotechnology, CCT, CGC.',
-    copyrightYear: '2025'
+    copyrightYear: ''
   }
 };
 
