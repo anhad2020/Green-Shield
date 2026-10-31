@@ -191,25 +191,46 @@
               </div>
             </div>
 
-            <!-- Hero Image Visual -->
+            <!-- Hero Image Visual: Authentic Lab Prototype Specimen -->
             <div class="col-lg-5">
               <div class="figure-card card-pop-effect">
                 <div class="figure-meta-bar">
-                  <span>BIODEGRADABLE PACKAGING ROLL &bull; CONCEPT</span>
+                  <span>AUTHENTIC LAB SPECIMEN &bull; BIOTECH BLOCK</span>
                   <span>FIGURE 1.0</span>
                 </div>
-                <div class="figure-img-wrapper p-3">
-                  <img src="/assets/greenshield-biopolymer-roll.png" alt="Roll of translucent biodegradable active packaging film formulated from biopolymer matrix" class="hero-figure-img img-fluid" />
+                <div class="figure-img-wrapper p-2 text-center bg-dark" style="min-height: 250px; display: flex; align-items: center; justify-content: center;">
+                  <img id="heroPrototypeMainImg" src="/public/assets/aistudio/image_41c5363a.png" alt="Final Green Shield Film flat sheet authentic laboratory prototype" class="hero-figure-img img-fluid rounded" style="max-height: 250px; width: auto; object-fit: contain;" />
                 </div>
                 <div class="figure-caption-box">
-                  <div class="figure-caption-title">Figure 1.0: Active Packaging Biodegradable Film Roll</div>
-                  <p class="figure-caption-text">
-                    Translucent, flexible biopolymer film derived from agro-waste starch, reinforced with cellulose and infused with botanical antimicrobial extracts.
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <div id="heroPrototypeCaptionTitle" class="figure-caption-title mb-0">Figure 1.0: Final Green Shield Film (Flat Sheet)</div>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle" style="font-size: 0.7rem;">Lab Validated</span>
+                  </div>
+                  <p id="heroPrototypeCaptionText" class="figure-caption-text mb-2">
+                    Translucent, uniform active packaging film formulated from agro-waste starch, gelatin matrix, and antimicrobial plant extract at CCT, CGC.
                   </p>
-                  <div class="d-flex align-items-center gap-2 mt-2 pt-2 border-top">
-                    <img src="/assets/greenshield-final-film-v2.png" alt="Authentic Lab Prototype" width="48" height="48" class="rounded border object-fit-cover" />
-                    <div class="small text-muted">
-                      <strong>Authentic Prototype (Step 10):</strong> Lab-cast starch-gelatin film tested at the Biotech Block, CCT, CGC.
+                  
+                  <!-- Interactive Specimen Switcher -->
+                  <div class="p-2 bg-light border rounded mt-2">
+                    <div class="d-flex align-items-center justify-content-between mb-1">
+                      <span class="text-secondary small fw-semibold" style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em;">Specimen Gallery:</span>
+                      <span class="text-muted" style="font-size: 0.68rem;">Click to switch view</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                      <button type="button" class="btn btn-sm p-1 border rounded d-flex align-items-center gap-2 flex-fill text-start bg-white prototype-view-btn active" data-img="/public/assets/aistudio/image_41c5363a.png" data-title="Figure 1.0: Final Green Shield Film (Flat Sheet)" data-desc="Pristine flat translucent sheet showing uniform thickness, smooth surface morphology, and absence of micro-pinholes." style="font-size: 0.75rem;">
+                        <img src="/public/assets/aistudio/image_41c5363a.png" width="36" height="36" class="rounded object-fit-cover border" alt="Flat Sheet" />
+                        <div>
+                          <div class="fw-bold text-dark lh-1">Flat Sheet</div>
+                          <div class="text-muted" style="font-size: 0.68rem;">Cast specimen</div>
+                        </div>
+                      </button>
+                      <button type="button" class="btn btn-sm p-1 border rounded d-flex align-items-center gap-2 flex-fill text-start bg-white prototype-view-btn" data-img="/public/assets/aistudio/image_4eb86790.png" data-title="Figure 1.1: Flexible & Elastic Behavior (Non-Brittle)" data-desc="Researcher flexing the active film between fingers, demonstrating ductility, tensile flexibility, and complete absence of brittle fracture." style="font-size: 0.75rem;">
+                        <img src="/public/assets/aistudio/image_4eb86790.png" width="36" height="36" class="rounded object-fit-cover border" alt="Flexible & Elastic" />
+                        <div>
+                          <div class="fw-bold text-dark lh-1">Elasticity Test</div>
+                          <div class="text-muted" style="font-size: 0.68rem;">Non-brittle flex</div>
+                        </div>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -463,9 +484,9 @@
                 </div>
 
                 <div class="d-flex align-items-center gap-3 mb-3 p-2 bg-light border rounded">
-                  <img src="/assets/greenshield-steps-casting-v2.png" alt="Film casting and drying process" width="70" height="70" class="rounded border object-fit-cover" />
+                  <img src="/public/assets/aistudio/image_4eb86790.png" alt="Flexible and elastic non-brittle Green Shield film" width="70" height="70" class="rounded border object-fit-cover" />
                   <div class="small text-muted">
-                    <strong>Casting &amp; Peeling:</strong> Standardized casting into non-stick Teflon trays followed by conditioned convection drying.
+                    <strong>Pliability &amp; Non-Brittle Elasticity:</strong> Validated mechanical flexibility and stretchability without cracking, achieved via natural plasticization and gelatin cross-linking.
                   </div>
                 </div>
 
@@ -594,6 +615,49 @@
                 <div class="testing-card-title">Food Shelf-Life Evaluation</div>
                 <p class="testing-card-desc">Comparative storage testing on fresh perishable produce evaluating weight loss and freshness.</p>
                 <div class="testing-card-method">Trial: Perishable Storage Benchmark</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Physical Prototype Evidence Showcase -->
+          <div class="row g-4 mt-2 mb-4">
+            <div class="col-12">
+              <div class="p-3 bg-white border rounded card-pop-effect">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-2 border-bottom">
+                  <div>
+                    <span class="badge" style="background-color: var(--accent-primary); font-family: var(--font-family-mono); font-size: 0.72rem;">PHYSICAL EVIDENCE</span>
+                    <h4 class="h6 fw-bold text-dark mb-0 mt-1">Laboratory Prototype Specimens Developed at Biotech Block, CCT, CGC</h4>
+                  </div>
+                  <span class="small text-muted" style="font-size: 0.8rem;">Batch Formulated for Parivartan Showcase</span>
+                </div>
+
+                <div class="row g-3">
+                  <!-- Specimen 1: Flat Sheet -->
+                  <div class="col-md-6">
+                    <div class="border rounded p-2 bg-light h-100">
+                      <div class="rounded overflow-hidden mb-2 bg-dark text-center" style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                        <img src="/public/assets/aistudio/image_41c5363a.png" alt="Final Green Shield Film (Flat sheet)" class="img-fluid" style="max-height: 220px; width: auto; object-fit: contain;" />
+                      </div>
+                      <div class="fw-bold text-dark" style="font-size: 0.92rem;">Specimen A: Final Green Shield Film (Flat Sheet)</div>
+                      <div class="small text-secondary mt-1" style="line-height: 1.5; font-size: 0.82rem;">
+                        Pristine continuous biopolymer film cast on a non-stick substrate. Exhibits uniform macroscopic thickness, high optical transparency, smooth surface morphology, and total absence of air voids or brittleness fissures.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Specimen 2: Elasticity Test -->
+                  <div class="col-md-6">
+                    <div class="border rounded p-2 bg-light h-100">
+                      <div class="rounded overflow-hidden mb-2 bg-dark text-center" style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                        <img src="/public/assets/aistudio/image_4eb86790.png" alt="Flexible & elastic (non-brittle)" class="img-fluid" style="max-height: 220px; width: auto; object-fit: contain;" />
+                      </div>
+                      <div class="fw-bold text-dark" style="font-size: 0.92rem;">Specimen B: Flexible &amp; Elastic Mechanical Behavior (Non-Brittle)</div>
+                      <div class="small text-secondary mt-1" style="line-height: 1.5; font-size: 0.82rem;">
+                        Pliability validation test demonstrating extreme curvature without fracture or whitening. The plasticized biopolymer network easily bends, stretches, and contours around perishable produce without cracking.
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

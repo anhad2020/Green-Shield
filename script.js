@@ -611,6 +611,45 @@ function setupHeadingPopObserver() {
   headings.forEach(heading => observer.observe(heading));
 }
 
+/**
+ * Setup Specimen Switcher for authentic prototype viewer in Hero
+ */
+function setupPrototypeSwitcher() {
+  const switchBtns = document.querySelectorAll('.prototype-view-btn');
+  const mainImg = document.getElementById('heroPrototypeMainImg');
+  const captionTitle = document.getElementById('heroPrototypeCaptionTitle');
+  const captionText = document.getElementById('heroPrototypeCaptionText');
+
+  if (!switchBtns.length || !mainImg) return;
+
+  switchBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetImg = btn.getAttribute('data-img');
+      const targetTitle = btn.getAttribute('data-title');
+      const targetDesc = btn.getAttribute('data-desc');
+
+      if (targetImg && mainImg.src !== targetImg) {
+        mainImg.style.opacity = '0.4';
+        mainImg.style.transition = 'opacity 0.15s ease';
+        setTimeout(() => {
+          mainImg.src = targetImg;
+          mainImg.style.opacity = '1';
+        }, 150);
+      }
+
+      if (captionTitle && targetTitle) {
+        captionTitle.textContent = targetTitle;
+      }
+      if (captionText && targetDesc) {
+        captionText.textContent = targetDesc;
+      }
+
+      switchBtns.forEach(b => b.classList.remove('active', 'border-success', 'bg-light'));
+      btn.classList.add('active', 'border-success', 'bg-light');
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('hashchange', handleRouting);
   
@@ -625,4 +664,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setupScrollSpy();
   setupHeadingPopObserver();
   setupContactForm();
+  setupPrototypeSwitcher();
 });
